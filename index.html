@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 18th Maryann 💖</title>
+<style>
+body{
+    margin:0;
+    font-family:'Courier New', cursive;
+    background:black;
+    overflow:hidden;
+    color:#ff69b4;
+    text-align:center;
+}
+
+/* Anime sparkles background */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:radial-gradient(circle, #ff1493 1px, transparent 1px);
+    background-size:30px 30px;
+    animation:sparkle 4s linear infinite;
+    opacity:0.2;
+}
+
+@keyframes sparkle{
+    from{background-position:0 0;}
+    to{background-position:100px 100px;}
+}
+
+/* Letter */
+#letter{
+    width:90%;
+    max-width:600px;
+    background:#111;
+    border:2px solid #ff1493;
+    padding:20px;
+    margin:100px auto;
+    border-radius:20px;
+    box-shadow:0 0 25px #ff1493;
+    display:none;
+    animation:fadeIn 2s forwards;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(0.8);}
+    to{opacity:1; transform:scale(1);}
+}
+
+button{
+    background:#ff1493;
+    border:none;
+    padding:10px 20px;
+    border-radius:20px;
+    color:white;
+    cursor:pointer;
+    margin:10px;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#ff69b4;
+}
+
+.typing{
+    border-right:2px solid #ff69b4;
+    white-space:pre-wrap;
+    overflow:hidden;
+}
+
+.heart{
+    position:fixed;
+    color:#ff1493;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-10vh);}
+}
+</style>
+</head>
+<body>
+
+<audio autoplay loop>
+<source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
+<h1 style="margin-top:150px;">💌 Click to Open Your Letter Maryann 💖</h1>
+<button onclick="openLetter()">Open Letter</button>
+
+<div id="letter">
+    <h2>Happy 18th Birthday Maryann 🎂💖</h2>
+    <p id="message" class="typing"></p>
+
+    <div id="question" style="display:none;">
+        <h3>Are you happy to be 18? 💕</h3>
+        <button onclick="yesHappy()">Yes 😊</button>
+        <button onclick="noHappy()">No 😅</button>
+    </div>
+</div>
+
+<script>
+const text = `Maryann 💖,
+
+Today you turn 18 — a beautiful chapter of your life begins.
+I just want you to know how grateful I am to have you as my friend.
+You are kind, genuine, caring and you light up my world like an anime confession scene under pink cherry blossoms 🌸✨
+
+At 18, you are stepping into your greatness.
+And I truly believe God has an amazing plan for you.
+
+"For I know the plans I have for you," declares the Lord,
+"plans to prosper you and not to harm you,
+plans to give you hope and a future." — Jeremiah 29:11
+
+Maryann, you are special beyond words.
+And I, Louis, am looking forward to celebrating many more birthdays with you 🎉💖
+
+Happy Birthday my amazing friend.
+`;
+
+let i = 0;
+function typeWriter(){
+    if(i < text.length){
+        document.getElementById("message").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 40);
+    }else{
+        document.getElementById("question").style.display="block";
+        confetti();
+    }
+}
+
+function openLetter(){
+    document.querySelector("h1").style.display="none";
+    document.querySelector("button").style.display="none";
+    document.getElementById("letter").style.display="block";
+    typeWriter();
+}
+
+function yesHappy(){
+    alert("Yayyy 💖✨ 18 looks perfect on you, Maryann! 🎉");
+}
+
+function noHappy(){
+    alert("Aww 😅 It's okay! I'll make 18 unforgettable for you 💕");
+}
+
+/* Floating Hearts */
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+20)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,800);
+
+/* Confetti */
+function confetti(){
+    for(let i=0;i<100;i++){
+        let conf = document.createElement("div");
+        conf.innerHTML="✨";
+        conf.style.position="fixed";
+        conf.style.left=Math.random()*100+"vw";
+        conf.style.top=Math.random()*100+"vh";
+        conf.style.fontSize="20px";
+        document.body.appendChild(conf);
+        setTimeout(()=>conf.remove(),3000);
+    }
+}
+</script>
+
+</body>
+</html>
